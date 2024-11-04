@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medication Strength Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .calculator {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            width: 100%;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <h2>Medication Strength Calculator</h2>
+    <form id="calculatorForm">
+        <label for="strengthDose">Current Strength (mg/ml):</label>
+        <input type="number" id="strengthDose" placeholder="Enter strength (mg/ml)" required>
+        
+        <label for="availableVolume">Available Volume (ml):</label>
+        <input type="number" id="availableVolume" placeholder="Enter volume (ml)" required>
+        
+        <label for="desiredStrength">Desired Final Strength (mg/ml):</label>
+        <input type="number" id="desiredStrength" placeholder="Enter final strength (mg/ml)" required>
+        
+        <button type="button" onclick="calculateVolume()">Calculate Required Volume</button>
+    </form>
+    <p id="result"></p>
+</div>
+
+<script>
+    function calculateVolume() {
+        // Get input values
+        const strengthDose = parseFloat(document.getElementById("strengthDose").value);
+        const availableVolume = parseFloat(document.getElementById("availableVolume").value);
+        const desiredStrength = parseFloat(document.getElementById("desiredStrength").value);
+        
+        // Check if inputs are valid
+        if (isNaN(strengthDose) || isNaN(availableVolume) || isNaN(desiredStrength) || desiredStrength > strengthDose) {
+            document.getElementById("result").innerText = "Please enter valid values and ensure desired strength is lower than or equal to the current strength.";
+            return;
+        }
+
+        // Calculate the required volume to achieve desired strength
+        const requiredVolume = (availableVolume * strengthDose) / desiredStrength;
+        
+        // Display the result
+        document.getElementById("result").innerText = `You should use ${requiredVolume.toFixed(2)} ml to achieve the desired strength of ${desiredStrength} mg/ml.`;
+    }
+</script>
+
+</body>
+</html>
