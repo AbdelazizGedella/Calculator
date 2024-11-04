@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Usage Calculator</title>
+    <script>
+        function calculateAmpules() {
+            // Get input values
+            var strengthPerAmpule = parseFloat(document.getElementById('strengthPerAmpule').value);
+            var amountPerML = parseFloat(document.getElementById('amountPerML').value);
+            var startTime = new Date(document.getElementById('startTime').value);
+            var endTime = new Date(document.getElementById('endTime').value);
+
+            // Validate inputs
+            if (isNaN(strengthPerAmpule) || isNaN(amountPerML) || strengthPerAmpule <= 0 || amountPerML <= 0) {
+                alert("Please enter valid positive numbers for Strength per Ampule and Amount per mL.");
+                return;
+            }
+            if (isNaN(startTime.getTime()) || isNaN(endTime.getTime())) {
+                alert("Please enter valid start and end times.");
+                return;
+            }
+            if (endTime <= startTime) {
+                alert("End time must be after start time.");
+                return;
+            }
+
+            // Calculate time difference in hours
+            var timeDiff = (endTime - startTime) / (1000 * 60 * 60); // Convert milliseconds to hours
+
+            // Calculate total amount used (mg/%/mcg)
+            var totalAmountUsed = timeDiff * amountPerML; // Total amount used in mg/%/mcg
+
+            // Calculate total number of ampules used
+            var totalAmpulesUsed = totalAmountUsed / strengthPerAmpule;
+
+            // Display result
+            document.getElementById('result').innerText = 'Total Ampules Used: ' + totalAmpulesUsed.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <h1>Item Usage Calculator</h1>
+
+    <label for="strengthPerAmpule">Strength per Ampule (mg, %, mcg):</label>
+    <input type="number" id="strengthPerAmpule" step="0.01" required><br><br>
+
+    <label for="amountPerML">Amount per Hour (mL):</label>
+    <input type="number" id="amountPerML" step="0.01" required><br><br>
+
+    <label for="startTime">Start Time:</label>
+    <input type="datetime-local" id="startTime" required><br><br>
+
+    <label for="endTime">End Time:</label>
+    <input type="datetime-local" id="endTime" required><br><br>
+
+    <button onclick="calculateAmpules()">Calculate</button>
+
+    <h2 id="result">Total Ampules Used: </h2>
+</body>
+</html>
