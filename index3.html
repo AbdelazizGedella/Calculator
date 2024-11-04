@@ -71,11 +71,14 @@
             return;
         }
 
-        // Calculate the required volume to achieve desired strength
-        const requiredVolume = (availableVolume * strengthDose) / desiredStrength;
+        // Calculate the total final volume needed to achieve the desired strength
+        const totalFinalVolume = (availableVolume * strengthDose) / desiredStrength;
+        
+        // Calculate the required diluent volume to add
+        const diluentVolume = totalFinalVolume - availableVolume;
         
         // Display the result
-        document.getElementById("result").innerText = `You should use ${requiredVolume.toFixed(2)} ml to achieve the desired strength of ${desiredStrength} mg/ml.`;
+        document.getElementById("result").innerText = `You should add ${diluentVolume.toFixed(2)} ml of diluent to achieve a total volume of ${totalFinalVolume.toFixed(2)} ml with the desired strength of ${desiredStrength} mg/ml.`;
     }
 </script>
 
