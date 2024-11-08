@@ -40,11 +40,11 @@
     
     <div class="card bg-primary text-white"> Calculation Formula:
     </div>
-    <p>(Dose × 60 × 50) / (3 × 1000)</p>
+    <p>(Dose × 60 × 50) / (6 × 1000)</p>
 
     <div class="card bg-success text-white"> Formulate:
     </div>
-    <p>Use 3 ml from an ampule containing 4 mg/4 ml of Norepinephrine and discard 1 ml. Add 47 ml of N.S. or D5W to make a total volume of 50 ml with 3 mg of Norepinephrine.</p>
+    <p>Use 6 ml from 2 ampule containing 4 mg/4 ml of Norepinephrine and discard 2 ml. Add 44 ml of N.S. or D5W to make a total volume of 50 ml with 6 mg of Norepinephrine.</p>
 
     <label for="dose">Desired Dose (mcg/min): </label>
     <input type="number" id="dose" step="0.1" required><br>
@@ -67,7 +67,7 @@
             }
 
             // Apply the calculation formula
-            const infusionRate = (dose * 60 * 50) / (3 * 1000); // ml/hour
+            const infusionRate = (dose * 60 * 50) / (6 * 1000); // ml/hour
 
             // Display result
             document.getElementById('output').innerText =
