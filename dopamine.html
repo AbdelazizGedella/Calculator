@@ -27,17 +27,15 @@
 <body>
     <h2>Dopamine Dose Calculator for Cardiac Arrest (Adult)</h2>
     <p>Recommended Dose: 5-20 mcg/kg/min</p>
+    <p>Calculation Formula: (Dose * Weight * 60 * 50) / (400 * 1000)</p>
 
-    <label for="strength">Strength of Dopamine (mg/ml): </label>
-    <input type="number" id="strength" step="0.1" required><br>
-
-    <label for="amount">Amount of Dopamine (ml): </label>
-    <input type="number" id="amount" step="0.1" required><br>
+    <label for="dose">Desired Dose (mcg/kg/min): </label>
+    <input type="number" id="dose" step="0.1" required><br>
 
     <label for="weight">Patient Weight (kg): </label>
     <input type="number" id="weight" required><br>
 
-    <button onclick="calculateDose()">Calculate</button>
+    <button onclick="calculateInfusion()">Calculate</button>
 
     <div class="result" id="result">
         <h3>Calculation Result:</h3>
@@ -45,33 +43,23 @@
     </div>
 
     <script>
-        function calculateDose() {
+        function calculateInfusion() {
             // Get input values
-            const strength = parseFloat(document.getElementById('strength').value);
-            const amount = parseFloat(document.getElementById('amount').value);
+            const dose = parseFloat(document.getElementById('dose').value);
             const weight = parseFloat(document.getElementById('weight').value);
 
-            if (!strength || !amount || !weight) {
+            if (!dose || !weight) {
                 document.getElementById('output').innerText = 'Please fill in all fields correctly.';
                 return;
             }
 
-            // Convert strength to mcg/ml
-            const concentration = strength * 1000; // mg/ml to mcg/ml
-            const totalMcg = concentration * amount; // Total mcg in the ampule
-
-            // Calculate infusion parameters
-            const minDose = 5 * weight; // mcg/min for minimum dose
-            const maxDose = 20 * weight; // mcg/min for maximum dose
-
-            const minDilution = (minDose * 60) / totalMcg; // ml/hour for minimum dose
-            const maxDilution = (maxDose * 60) / totalMcg; // ml/hour for maximum dose
+            // Apply the calculation formula
+            const infusionRate = (dose * weight * 60 * 50) / (400 * 1000); // ml/hour
 
             // Display result
             document.getElementById('output').innerText =
-                `To achieve the recommended dose:\n` +
-                `- Minimum Infusion Rate: ${minDilution.toFixed(2)} ml/hour\n` +
-                `- Maximum Infusion Rate: ${maxDilution.toFixed(2)} ml/hour`;
+                `To achieve a dose of ${dose} mcg/kg/min for a patient weighing ${weight} kg:\n` +
+                `- Infusion Rate: ${infusionRate.toFixed(2)} ml/hour`;
         }
     </script>
 </body>
