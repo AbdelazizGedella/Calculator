@@ -3,88 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Medical Calculator</title>
     <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #003366;
-            color: #ffffff;
+            background-color: #121212;
+            color: #e0e0e0;
             font-family: Arial, sans-serif;
-            transition: background-color 0.3s, color 0.3s;
         }
         .container {
-            text-align: center;
-            max-width: 600px;
-            margin-top: 20vh;
+            max-width: 700px;
+            margin: 10vh auto;
             padding: 30px;
-            background-color: #ffffff;
-            color: #003366;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
+            background-color: #1f1f1f;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
         }
         h1 {
-            color: #003366;
+            font-size: 2.5rem;
+            color: #4caf50;
+            font-weight: bold;
+        }
+        p {
+            font-size: 1rem;
         }
         .btn-custom {
             font-weight: bold;
-            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            transition: all 0.3s ease;
         }
         .btn-calculator {
-            background-color: #007bff;
+            background-color: #4caf50;
+            color: #fff;
+        }
+        .btn-calculator:hover {
+            background-color: #388e3c;
         }
         .btn-linkedin {
             background-color: #0077b5;
+            color: #fff;
+        }
+        .btn-linkedin:hover {
+            background-color: #005582;
         }
         .btn-whatsapp {
             background-color: #25d366;
+            color: #fff;
         }
-        .dark-mode .container {
-            background-color: #1e1e1e;
-            color: #ffffff;
-        }
-        .dark-mode body {
-            background-color: #121212;
-            color: #ffffff;
+        .btn-whatsapp:hover {
+            background-color: #1da851;
         }
         .toggle-dark-mode {
-            margin-bottom: 20px;
-            font-size: 0.9em;
-            color: #ffffff;
+            background-color: #4caf50;
+            color: #fff;
+        }
+        .toggle-dark-mode:hover {
+            background-color: #388e3c;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #757575;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
+<div class="container text-center">
     <h1>Medical Calculator</h1>
-    <p>Welcome to the Medical Calculator! Choose from a variety of calculators below to assist with dosage and medication management calculations.</p>
+    <p class="mb-4">Welcome! Explore various medical calculators to assist in dosage and medication management.</p>
 
     <!-- Dark Mode Toggle -->
-    <button class="btn btn-secondary toggle-dark-mode" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <button class="btn toggle-dark-mode mb-4" onclick="toggleDarkMode()">Toggle Dark Mode</button>
 
-    <div class="d-flex flex-column flex-md-row justify-content-center mt-4">
-        <a href="https://abdelazizgedella.github.io/Calculator/index.html" target="_blank" class="btn btn-custom btn-calculator mx-2 my-2">Quantity Calculator</a>
-        <a href="https://abdelazizgedella.github.io/Calculator/index2.html" target="_blank" class="btn btn-custom btn-calculator mx-2 my-2">Medication Dilution Calculator</a>
-        <a href="https://abdelazizgedella.github.io/Calculator/index3.html" target="_blank" class="btn btn-custom btn-calculator mx-2 my-2">Medication Strength Calculator</a>
+    <!-- Calculator Links -->
+    <div class="row">
+        <div class="col-12 col-md-6 mb-3">
+            <a href="https://abdelazizgedella.github.io/Calculator/index.html" target="_blank" class="btn btn-custom btn-calculator btn-block">Quantity Calculator</a>
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+            <a href="https://abdelazizgedella.github.io/Calculator/index2.html" target="_blank" class="btn btn-custom btn-calculator btn-block">Medication Dilution</a>
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+            <a href="https://abdelazizgedella.github.io/Calculator/index3.html" target="_blank" class="btn btn-custom btn-calculator btn-block">Medication Strength</a>
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+            <a href="https://abdelazizgedella.github.io/Calculator/norepinephrine.html" target="_blank" class="btn btn-custom btn-calculator btn-block">Norepinephrine Infusion</a>
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+            <a href="https://abdelazizgedella.github.io/Calculator/dopamine.html" target="_blank" class="btn btn-custom btn-calculator btn-block">Dopamine Infusion</a>
+        </div>
     </div>
 
     <p class="mt-4">Connect with me:</p>
-    <div class="d-flex flex-column flex-md-row justify-content-center">
-        <a href="https://www.linkedin.com/in/abdelaziz-ibrahim-gedeleila-773b2b141" target="_blank" class="btn btn-custom btn-linkedin mx-2 my-2">LinkedIn</a>
-        <a href="https://wa.me/966536564235" target="_blank" class="btn btn-custom btn-whatsapp mx-2 my-2">WhatsApp</a>
+    <div class="row">
+        <div class="col-12 col-md-6 mb-3">
+            <a href="https://www.linkedin.com/in/abdelaziz-ibrahim-gedeleila-773b2b141" target="_blank" class="btn btn-custom btn-linkedin btn-block">LinkedIn</a>
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+            <a href="https://wa.me/966536564235" target="_blank" class="btn btn-custom btn-whatsapp btn-block">WhatsApp</a>
+        </div>
     </div>
 </div>
 
+<footer>
+    © 2024 Abdelaziz Ibrahim Gedelleila | All Rights Reserved
+</footer>
+
 <!-- Bootstrap JS, Popper.js, and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
 <script>
-    // Dark Mode Toggle Function
     function toggleDarkMode() {
         document.body.classList.toggle('dark-mode');
     }
 </script>
+
 </body>
 </html>
