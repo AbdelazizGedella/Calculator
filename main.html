@@ -13,24 +13,26 @@
             font-family: Arial, sans-serif;
         }
         .container {
-            max-width: 700px;
-            margin: 10vh auto;
+            max-width: 800px;
+            margin-top: 5vh;
+            margin-bottom: 5vh;
             padding: 30px;
             background-color: #1f1f1f;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
         }
-        h1 {
-            font-size: 2.5rem;
+        h1, h2 {
             color: #4caf50;
             font-weight: bold;
         }
         p {
             font-size: 1rem;
+            color: #cccccc;
         }
         .btn-custom {
             font-weight: bold;
             padding: 10px 20px;
+            margin: 5px;
             border: none;
             transition: all 0.3s ease;
         }
@@ -55,15 +57,8 @@
         .btn-whatsapp:hover {
             background-color: #1da851;
         }
-        .toggle-dark-mode {
-            background-color: #4caf50;
-            color: #fff;
-        }
-        .toggle-dark-mode:hover {
-            background-color: #388e3c;
-        }
-        .btn-group .btn {
-            margin: 5px;
+        .section {
+            margin-top: 30px;
         }
         footer {
             margin-top: 20px;
@@ -77,27 +72,33 @@
 
 <div class="container text-center">
     <h1>Medical Calculator</h1>
-    <p class="mb-4">Welcome! Explore various medical calculators to assist in dosage and medication management.</p>
+    <p>Welcome! Explore various medical calculators to assist in dosage and medication management.</p>
 
-    <!-- Dark Mode Toggle -->
-    <button class="btn toggle-dark-mode mb-4" onclick="toggleDarkMode()">Toggle Dark Mode</button>
-
-    <!-- Calculator Links -->
-    <div class="btn-group-vertical d-md-block d-sm-inline-block d-block text-center">
-        <a href="https://abdelazizgedella.github.io/Calculator/index.html" target="_blank" class="btn btn-custom btn-calculator">Quantity Calculator</a><br>
-        <a href="https://abdelazizgedella.github.io/Calculator/index2.html" target="_blank" class="btn btn-custom btn-calculator">Medication Dilution</a><br>
-        <a href="https://abdelazizgedella.github.io/Calculator/index3.html" target="_blank" class="btn btn-custom btn-calculator">Medication Strength</a><br>
-        <a href="https://abdelazizgedella.github.io/Calculator/norepinephrine.html" target="_blank" class="btn btn-custom btn-calculator">Norepinephrine Infusion</a><br>
-        <a href="https://abdelazizgedella.github.io/Calculator/dopamine.html" target="_blank" class="btn btn-custom btn-calculator">Dopamine Infusion</a>
+    <!-- General Calculators Section -->
+    <div class="section">
+        <h2>General Calculators</h2>
+        <div class="d-flex flex-wrap justify-content-center">
+            <a href="https://abdelazizgedella.github.io/Calculator/index.html" target="_blank" class="btn btn-custom btn-calculator">Quantity Calculator</a>
+            <a href="https://abdelazizgedella.github.io/Calculator/index2.html" target="_blank" class="btn btn-custom btn-calculator">Medication Dilution</a>
+            <a href="https://abdelazizgedella.github.io/Calculator/index3.html" target="_blank" class="btn btn-custom btn-calculator">Medication Strength</a>
+        </div>
     </div>
 
-    <p class="mt-4">Connect with me:</p>
-    <div class="row">
-        <div class="col-12 col-md-6 mb-3">
-            <a href="https://www.linkedin.com/in/abdelaziz-ibrahim-gedeleila-773b2b141" target="_blank" class="btn btn-custom btn-linkedin btn-block">LinkedIn</a><br>
+    <!-- Infusion Calculators Section -->
+    <div class="section">
+        <h2>Infusion Calculators</h2>
+        <div class="d-flex flex-column align-items-center">
+            <a href="https://abdelazizgedella.github.io/Calculator/norepinephrine.html" target="_blank" class="btn btn-custom btn-calculator">Norepinephrine Infusion</a>
+            <a href="https://abdelazizgedella.github.io/Calculator/dopamine.html" target="_blank" class="btn btn-custom btn-calculator">Dopamine Infusion</a>
         </div>
-        <div class="col-12 col-md-6 mb-3">
-            <a href="https://wa.me/966536564235" target="_blank" class="btn btn-custom btn-whatsapp btn-block">WhatsApp</a>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="section">
+        <h2>Connect with Me</h2>
+        <div class="d-flex flex-wrap justify-content-center">
+            <a href="https://www.linkedin.com/in/abdelaziz-ibrahim-gedeleila-773b2b141" target="_blank" class="btn btn-custom btn-linkedin">LinkedIn</a>
+            <a href="https://wa.me/966536564235" target="_blank" class="btn btn-custom btn-whatsapp">WhatsApp</a>
         </div>
     </div>
 </div>
@@ -110,12 +111,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
-
-<script>
-    function toggleDarkMode() {
-        document.body.classList.toggle('dark-mode');
-    }
-</script>
 
 </body>
 </html>
