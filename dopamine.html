@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dopamine Dose Calculator</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+        }
+        input, button {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+        .result {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #333333;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Dopamine Dose Calculator for Cardiac Arrest (Adult)</h2>
+    <p>Recommended Dose: 5-20 mcg/kg/min</p>
+
+    <label for="strength">Strength of Dopamine (mg/ml): </label>
+    <input type="number" id="strength" step="0.1" required><br>
+
+    <label for="amount">Amount of Dopamine (ml): </label>
+    <input type="number" id="amount" step="0.1" required><br>
+
+    <label for="weight">Patient Weight (kg): </label>
+    <input type="number" id="weight" required><br>
+
+    <button onclick="calculateDose()">Calculate</button>
+
+    <div class="result" id="result">
+        <h3>Calculation Result:</h3>
+        <p id="output"></p>
+    </div>
+
+    <script>
+        function calculateDose() {
+            // Get input values
+            const strength = parseFloat(document.getElementById('strength').value);
+            const amount = parseFloat(document.getElementById('amount').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+
+            if (!strength || !amount || !weight) {
+                document.getElementById('output').innerText = 'Please fill in all fields correctly.';
+                return;
+            }
+
+            // Convert strength to mcg/ml
+            const concentration = strength * 1000; // mg/ml to mcg/ml
+            const totalMcg = concentration * amount; // Total mcg in the ampule
+
+            // Calculate infusion parameters
+            const minDose = 5 * weight; // mcg/min for minimum dose
+            const maxDose = 20 * weight; // mcg/min for maximum dose
+
+            const minDilution = (minDose * 60) / totalMcg; // ml/hour for minimum dose
+            const maxDilution = (maxDose * 60) / totalMcg; // ml/hour for maximum dose
+
+            // Display result
+            document.getElementById('output').innerText =
+                `To achieve the recommended dose:\n` +
+                `- Minimum Infusion Rate: ${minDilution.toFixed(2)} ml/hour\n` +
+                `- Maximum Infusion Rate: ${maxDilution.toFixed(2)} ml/hour`;
+        }
+    </script>
+</body>
+</html>
