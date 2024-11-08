@@ -5,23 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dopamine Dose Calculator</title>
     
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <style>
         body {
             background-color: #121212;
@@ -44,19 +32,18 @@
 </head>
 <body>
     <h2>Dopamine Dose Calculator for Cardiac Arrest (Adult)</h2>
-      <br>
-  <div class="card bg-info text-white">
-    <div class="card-body">Recommended Dose:</div>
-  </div>
-  <br>
+    <br>
+    <div class="card bg-info text-white">
+        <div class="card-body">Recommended Dose:</div>
+    </div>
+    <br>
     <p>5-20 mcg/kg/min</p>
     
-      <br>
-  <div class="card bg-primary text-white">
-    <div class="card-body">Calculation Formula: l</div>
-  </div>
-  <br>
-    
+    <br>
+    <div class="card bg-primary text-white">
+        <div class="card-body">Calculation Formula:</div>
+    </div>
+    <br>
     <p>(Dose * Weight * 60 * 50) / (400 * 1000)</p>
 
     <label for="dose">Desired Dose (mcg/kg/min): </label>
@@ -64,6 +51,9 @@
 
     <label for="weight">Patient Weight (kg): </label>
     <input type="number" id="weight" required><br>
+
+    <label for="strength">Dopamine Strength (mg/ml): </label>
+    <input type="number" id="strength" step="0.1" required><br>
 
     <button onclick="calculateInfusion()">Calculate</button>
 
@@ -77,19 +67,24 @@
             // Get input values
             const dose = parseFloat(document.getElementById('dose').value);
             const weight = parseFloat(document.getElementById('weight').value);
+            const strength = parseFloat(document.getElementById('strength').value);
 
-            if (!dose || !weight) {
+            if (!dose || !weight || !strength) {
                 document.getElementById('output').innerText = 'Please fill in all fields correctly.';
                 return;
             }
 
-            // Apply the calculation formula
+            // Calculate the infusion rate
             const infusionRate = (dose * weight * 60 * 50) / (400 * 1000); // ml/hour
+
+            // Calculate concentration per 1 ml in mcg and mg
+            const concentrationMcgPerMl = strength * 1000; // Convert mg/ml to mcg/ml
 
             // Display result
             document.getElementById('output').innerText =
                 `To achieve a dose of ${dose} mcg/kg/min for a patient weighing ${weight} kg:\n` +
-                `- Infusion Rate: ${infusionRate.toFixed(2)} ml/hour`;
+                `- Infusion Rate: ${infusionRate.toFixed(2)} ml/hour\n` +
+                `- Concentration per 1 ml: ${concentrationMcgPerMl.toFixed(2)} mcg/ml (${strength.toFixed(2)} mg/ml)`;
         }
     </script>
 </body>
