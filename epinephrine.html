@@ -17,37 +17,50 @@
             font-family: Arial, sans-serif;
             margin: 2rem;
         }
-        input, button {
+        input, button, select {
             margin: 0.5rem 0;
             padding: 0.5rem;
             font-size: 1rem;
         }
-        .result {
+        .result, .notes {
             margin-top: 1rem;
             padding: 1rem;
             background-color: #333333;
             border-radius: 5px;
+        }
+        .notes {
+            background-color: #444444;
         }
     </style>
 </head>
 <body>
     <h2>Epinephrine Dose Calculator for Continuous Infusion</h2>
     <br>
-    <div class="card bg-info text-white"> Recommended Dose:
+    <div class="card bg-info text-white">
+        <div class="card-body">Recommended Dose: 0.01 – 0.5 mcg/kg/min (initially)</div>
     </div>
 
-    <p>1-10 mcg/min</p>
-    
-    <div class="card bg-primary text-white"> Calculation Formula:
+    <div class="card bg-primary text-white mt-3">
+        <div class="card-body">Calculation Formula: (Dose × 60 × 50) / (Strength × 1000)</div>
     </div>
-    <p>(Dose × 60 × 100) / (1 × 1000)</p>
 
-    <div class="card bg-success text-white"> Formulate:
+    <div class="card bg-success text-white mt-3">
+        <div class="card-body">
+            <strong>Formulate:</strong>
+            <p>Dilute 4 mg over 50 ml, 8 mg over 50 ml, or other strengths as per the selected option.</p>
+        </div>
     </div>
-    <p>Add 1 ampule of Epinephrine (1 mg/1 ml) to 100 ml of N.S. to create a solution with a concentration of 1 mg in 100 ml.</p>
 
-    <label for="dose">Desired Dose (mcg/min): </label>
-    <input type="number" id="dose" step="0.1" required><br>
+    <label for="dose">Desired Dose (mcg/kg/min): </label>
+    <input type="number" id="dose" step="0.01" required><br>
+
+    <label for="strength">Select Concentration Strength: </label>
+    <select id="strength">
+        <option value="4">4 mg in 50 mL (80 mcg/mL)</option>
+        <option value="8">8 mg in 50 mL (160 mcg/mL)</option>
+        <option value="16">16 mg in 50 mL (320 mcg/mL)</option>
+        <option value="40">40 mg in 40 mL (1 mg/mL)</option>
+    </select><br>
 
     <button onclick="calculateInfusion()">Calculate</button>
 
@@ -56,22 +69,33 @@
         <p id="output"></p>
     </div>
 
+    <div class="notes">
+        <h4>Important Notes:</h4>
+        <ul>
+            <li>Central line administration is recommended. No flushing.</li>
+            <li>Peripheral line administration is not recommended; only use in emergencies and for short term.</li>
+            <li>Start with 0.5 mL/h of the 80 mcg/mL concentration (approx. 0.01 mcg/kg/min for a 70 kg patient).</li>
+            <li>Titrate to desired effect as needed.</li>
+        </ul>
+    </div>
+
     <script>
         function calculateInfusion() {
-            // Get input value
+            // Get input values
             const dose = parseFloat(document.getElementById('dose').value);
+            const strength = parseFloat(document.getElementById('strength').value);
 
-            if (!dose) {
-                document.getElementById('output').innerText = 'Please enter a valid dose.';
+            if (!dose || !strength) {
+                document.getElementById('output').innerText = 'Please enter a valid dose and select a strength.';
                 return;
             }
 
             // Apply the calculation formula
-            const infusionRate = (dose * 60 * 100) / (1 * 1000); // ml/hour
+            const infusionRate = (dose * 60 * 50) / (strength * 1000); // ml/hour
 
             // Display result
             document.getElementById('output').innerText =
-                `To achieve a dose of ${dose} mcg/min:\n` +
+                `To achieve a dose of ${dose} mcg/kg/min with a ${strength} mg/50 mL solution:\n` +
                 `- Infusion Rate: ${infusionRate.toFixed(2)} ml/hour`;
         }
     </script>
