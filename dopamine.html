@@ -1,13 +1,31 @@
+ 
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dopamine Dilution Calculator</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Dopamine Dose Calculator</title>
+    
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <style>
         body {
             background-color: #121212;
@@ -29,23 +47,29 @@
     </style>
 </head>
 <body>
-    <h2>Dopamine Dilution Strength Calculator</h2>
-    <br>
-    <div class="card bg-info text-white">
-        <div class="card-body">Calculation for Final Concentration:</div>
-    </div>
-    <br>
+    <h2>Dopamine Dose Calculator for Cardiac Arrest (Adult)</h2>
+      <br>
+  <div class="card bg-info text-white">
+    <div class="card-body">Recommended Dose:</div>
+  </div>
+  <br>
+    <p>5-20 mcg/kg/min</p>
+    
+      <br>
+  <div class="card bg-primary text-white">
+    <div class="card-body">Calculation Formula: l</div>
+  </div>
+  <br>
+    
+    <p>(Dose * Weight * 60 * 50) / (400 * 1000)</p>
 
-    <label for="dopamineAmount">Total Dopamine Amount (mg): </label>
-    <input type="number" id="dopamineAmount" value="400" readonly><br>
+    <label for="dose">Desired Dose (mcg/kg/min): </label>
+    <input type="number" id="dose" step="0.1" required><br>
 
-    <label for="dopamineVolume">Dopamine Solution Volume (ml): </label>
-    <input type="number" id="dopamineVolume" value="4" readonly><br>
+    <label for="weight">Patient Weight (kg): </label>
+    <input type="number" id="weight" required><br>
 
-    <label for="salineVolume">Normal Saline Volume (ml): </label>
-    <input type="number" id="salineVolume" value="46" readonly><br>
-
-    <button onclick="calculateConcentration()">Calculate Concentration</button>
+    <button onclick="calculateInfusion()">Calculate</button>
 
     <div class="result" id="result">
         <h3>Calculation Result:</h3>
@@ -53,24 +77,23 @@
     </div>
 
     <script>
-        function calculateConcentration() {
+        function calculateInfusion() {
             // Get input values
-            const dopamineAmount = 400; // mg (constant)
-            const dopamineVolume = 4; // ml (constant)
-            const salineVolume = 46; // ml (constant)
-            const totalVolume = dopamineVolume + salineVolume; // ml
+            const dose = parseFloat(document.getElementById('dose').value);
+            const weight = parseFloat(document.getElementById('weight').value);
 
-            // Calculate concentration in mg/ml
-            const concentrationMgPerMl = dopamineAmount / totalVolume;
+            if (!dose || !weight) {
+                document.getElementById('output').innerText = 'Please fill in all fields correctly.';
+                return;
+            }
 
-            // Convert to mcg/ml
-            const concentrationMcgPerMl = concentrationMgPerMl * 1000;
+            // Apply the calculation formula
+            const infusionRate = (dose * weight * 60 * 50) / (400 * 1000); // ml/hour
 
             // Display result
             document.getElementById('output').innerText =
-                `Final concentration of the diluted solution:\n` +
-                `- ${concentrationMgPerMl.toFixed(2)} mg/ml\n` +
-                `- ${concentrationMcgPerMl.toFixed(2)} mcg/ml`;
+                `To achieve a dose of ${dose} mcg/kg/min for a patient weighing ${weight} kg:\n` +
+                `- Infusion Rate: ${infusionRate.toFixed(2)} ml/hour`;
         }
     </script>
 </body>
