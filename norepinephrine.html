@@ -28,6 +28,12 @@
             background-color: #333333;
             border-radius: 5px;
         }
+        .notes {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #444444;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -35,19 +41,29 @@
     <br>
     <div class="card bg-info text-white"> Recommended Dose:
     </div>
-
-    <p>0.5-30 mcg/min</p>
+    <p>0.03-0.2 mcg/kg/min (initially)</p>
     
     <div class="card bg-primary text-white"> Calculation Formula:
     </div>
-    <p>(Dose × 60 × 50) / (6 × 1000)</p>
+    <p>(Dose × 60 × 50 × Weight) / (Drug Concentration × 1000)</p>
 
     <div class="card bg-success text-white"> Formulate:
     </div>
-    <p>Use 6 ml from 2 ampule containing 4 mg/4 ml of Norepinephrine and discard 2 ml. Add 44 ml of N.S. or D5W to make a total volume of 50 ml with 6 mg of Norepinephrine.</p>
+    <p>Use appropriate dilution and concentration of Norepinephrine for central or peripheral administration as described below.</p>
 
-    <label for="dose">Desired Dose (mcg/min): </label>
-    <input type="number" id="dose" step="0.1" required><br>
+    <label for="dose">Desired Dose (mcg/kg/min): </label>
+    <input type="number" id="dose" step="0.01" required><br>
+
+    <label for="weight">Patient Weight (kg): </label>
+    <input type="number" id="weight" required><br>
+
+    <label for="concentration">Chosen Concentration (mg): </label>
+    <select id="concentration">
+        <option value="4">4 mg</option>
+        <option value="8">8 mg</option>
+        <option value="16">16 mg</option>
+        <option value="40">40 mg</option>
+    </select><br>
 
     <button onclick="calculateInfusion()">Calculate</button>
 
@@ -56,22 +72,40 @@
         <p id="output"></p>
     </div>
 
+    <div class="notes">
+        <h4>Notes:</h4>
+        <ul>
+            <li><strong>Central line administration</strong> is recommended.</li>
+            <li>Common dilutions:
+                <ul>
+                    <li>Single: 4 mg in 50 mL (80 microgram/mL)</li>
+                    <li>Double: 8 mg in 50 mL (160 microgram/mL)</li>
+                    <li>Quadruple: 16 mg in 50 mL (320 microgram/mL)</li>
+                    <li>Neat: 40 mg in 40 mL (1 mg/mL) for extreme situations</li>
+                </ul>
+            </li>
+            <li><strong>Peripheral administration</strong> is not recommended unless in emergencies for short-term use. Use a dilution of 4 mg Norepinephrine in 246 mL Sodium Chloride 0.9% for a final concentration of 16 microgram/mL. Start at 13 mL/h for a 70 kg patient (0.05 mcg/kg/min).</li>
+        </ul>
+    </div>
+
     <script>
         function calculateInfusion() {
-            // Get input value
+            // Get input values
             const dose = parseFloat(document.getElementById('dose').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const concentration = parseFloat(document.getElementById('concentration').value);
 
-            if (!dose) {
-                document.getElementById('output').innerText = 'Please enter a valid dose.';
+            if (!dose || !weight || !concentration) {
+                document.getElementById('output').innerText = 'Please fill in all fields correctly.';
                 return;
             }
 
             // Apply the calculation formula
-            const infusionRate = (dose * 60 * 50) / (6 * 1000); // ml/hour
+            const infusionRate = (dose * 60 * 50 * weight) / (concentration * 1000); // ml/hour
 
             // Display result
             document.getElementById('output').innerText =
-                `To achieve a dose of ${dose} mcg/min:\n` +
+                `To achieve a dose of ${dose} mcg/kg/min for a patient weighing ${weight} kg with a chosen concentration of ${concentration} mg:\n` +
                 `- Infusion Rate: ${infusionRate.toFixed(2)} ml/hour`;
         }
     </script>
