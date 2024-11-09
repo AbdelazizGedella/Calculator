@@ -41,7 +41,7 @@
     </div>
 
     <div class="card bg-primary text-white mt-3">
-        <div class="card-body">Calculation Formula: (Dose × 60 × 50) / (Strength × 1000)</div>
+        <div class="card-body">Calculation Formula: (Dose × Weight × 60 × 50) / (Strength × 1000)</div>
     </div>
 
     <div class="card bg-success text-white mt-3">
@@ -53,6 +53,9 @@
 
     <label for="dose">Desired Dose (mcg/kg/min): </label>
     <input type="number" id="dose" step="0.01" required><br>
+
+    <label for="weight">Patient Weight (kg): </label>
+    <input type="number" id="weight" step="0.1" required><br>
 
     <label for="strength">Select Concentration Strength: </label>
     <select id="strength">
@@ -83,19 +86,20 @@
         function calculateInfusion() {
             // Get input values
             const dose = parseFloat(document.getElementById('dose').value);
+            const weight = parseFloat(document.getElementById('weight').value);
             const strength = parseFloat(document.getElementById('strength').value);
 
-            if (!dose || !strength) {
-                document.getElementById('output').innerText = 'Please enter a valid dose and select a strength.';
+            if (!dose || !weight || !strength) {
+                document.getElementById('output').innerText = 'Please enter a valid dose, weight, and select a strength.';
                 return;
             }
 
             // Apply the calculation formula
-            const infusionRate = (dose * 60 * 50) / (strength * 1000); // ml/hour
+            const infusionRate = (dose * weight * 60 * 50) / (strength * 1000); // ml/hour
 
             // Display result
             document.getElementById('output').innerText =
-                `To achieve a dose of ${dose} mcg/kg/min with a ${strength} mg/50 mL solution:\n` +
+                `To achieve a dose of ${dose} mcg/kg/min for a ${weight} kg patient with a ${strength} mg/50 mL solution:\n` +
                 `- Infusion Rate: ${infusionRate.toFixed(2)} ml/hour`;
         }
     </script>
