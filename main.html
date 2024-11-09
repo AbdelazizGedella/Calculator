@@ -14,8 +14,7 @@
         }
         .container {
             max-width: 800px;
-            margin-top: 5vh;
-            margin-bottom: 5vh;
+            margin: 5vh auto;
             padding: 30px;
             background-color: #1f1f1f;
             border-radius: 10px;
@@ -35,6 +34,7 @@
             margin: 5px;
             border: none;
             transition: all 0.3s ease;
+            width: 100%;
         }
         .btn-calculator {
             background-color: #4caf50;
@@ -66,6 +66,11 @@
             font-size: 0.9rem;
             color: #757575;
         }
+        @media (min-width: 768px) {
+            .btn-custom {
+                width: auto;
+            }
+        }
     </style>
 </head>
 <body>
@@ -78,22 +83,19 @@
     <div class="section">
         <h2>General Calculators</h2>
         <div class="d-flex flex-wrap justify-content-center">
-            <a href="https://abdelazizgedella.github.io/Calculator/index.html" target="_blank" class="btn btn-custom btn-calculator">Quantity Calculator</a>
-            <a href="https://abdelazizgedella.github.io/Calculator/index2.html" target="_blank" class="btn btn-custom btn-calculator">Medication Dilution</a>
-            <a href="https://abdelazizgedella.github.io/Calculator/index3.html" target="_blank" class="btn btn-custom btn-calculator">Medication Strength</a>
+            <a href="https://abdelazizgedella.github.io/Calculator/index.html" target="_blank" class="btn btn-custom btn-calculator col-12 col-md-5 m-2">Quantity Calculator</a>
+            <a href="https://abdelazizgedella.github.io/Calculator/index2.html" target="_blank" class="btn btn-custom btn-calculator col-12 col-md-5 m-2">Medication Dilution</a>
+            <a href="https://abdelazizgedella.github.io/Calculator/index3.html" target="_blank" class="btn btn-custom btn-calculator col-12 col-md-5 m-2">Medication Strength</a>
         </div>
     </div>
 
     <!-- Infusion Calculators Section -->
     <div class="section">
         <h2>Infusion Calculators</h2>
-        <div class="d-flex flex-column align-items-center">
-            <a href="https://abdelazizgedella.github.io/Calculator/norepinephrine.html" target="_blank" class="btn btn-custom btn-calculator">Norepinephrine Infusion</a>
-            <a href="https://abdelazizgedella.github.io/Calculator/dopamine.html" target="_blank" class="btn btn-custom btn-calculator">Dopamine Infusion</a>
-        
-             <a href="https://abdelazizgedella.github.io/Calculator/epinephrine.html" target="_blank" class="btn btn-custom btn-calculator">Epinephrine Infusion</a>
-        
-        
+        <div class="d-flex flex-wrap justify-content-center">
+            <a href="https://abdelazizgedella.github.io/Calculator/norepinephrine.html" target="_blank" class="btn btn-custom btn-calculator col-12 col-md-5 m-2">Norepinephrine Infusion</a>
+            <a href="https://abdelazizgedella.github.io/Calculator/dopamine.html" target="_blank" class="btn btn-custom btn-calculator col-12 col-md-5 m-2">Dopamine Infusion</a>
+            <a href="https://abdelazizgedella.github.io/Calculator/epinephrine.html" target="_blank" class="btn btn-custom btn-calculator col-12 col-md-5 m-2">Epinephrine Infusion</a>
         </div>
     </div>
 
@@ -101,8 +103,8 @@
     <div class="section">
         <h2>Connect with Me</h2>
         <div class="d-flex flex-wrap justify-content-center">
-            <a href="https://www.linkedin.com/in/abdelaziz-ibrahim-gedeleila-773b2b141" target="_blank" class="btn btn-custom btn-linkedin">LinkedIn</a>
-            <a href="https://wa.me/966536564235" target="_blank" class="btn btn-custom btn-whatsapp">WhatsApp</a>
+            <a href="https://www.linkedin.com/in/abdelaziz-ibrahim-gedeleila-773b2b141" target="_blank" class="btn btn-custom btn-linkedin col-12 col-md-5 m-2">LinkedIn</a>
+            <a href="https://wa.me/966536564235" target="_blank" class="btn btn-custom btn-whatsapp col-12 col-md-5 m-2">WhatsApp</a>
         </div>
     </div>
 </div>
